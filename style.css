@@ -1,0 +1,43 @@
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'Bungee', cursive;
+    font-size: 30px;
+    
+    background-color: gray;
+}
+
+canvas {
+  background-color: white;
+  width: 1600;
+  height: 1600;
+}
+
+div#word-bank {
+    margin: auto;
+    padding: 10px;
+}
+
+div#input-div {
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span#typo {
+    color: red;
+}
+
+#imagebank {
+    display: none
+}
