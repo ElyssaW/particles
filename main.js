@@ -29,11 +29,7 @@ let particleSettings = {
     gravity: .5,
     maxLife: 100,
     color: 'hotpink',
-    undercolor: 'black',
-    opacity: 1,
-    groundLevel: game.height,
-    leftwall: 0,
-    rightwall: game.width
+    groundLevel: game.height
 }
 
 // constructor function for new Particles
@@ -46,9 +42,6 @@ function Particle() {
         this.groundLevel = game.height
         // Various settings, grabbed from the settings object
         this.color = particleSettings.color
-        this.undercolor = particleSettings.undercolor
-        this.font = particleSettings.font
-        this.fontSize = particleSettings.fontSize
         this.vx = randomRange(-5, 5)
         this.vy = randomRange(-5, -10)
         
@@ -58,7 +51,6 @@ function Particle() {
         this.id = particleIndex
         this.life = 0
         this.maxLife = particleSettings.maxLife
-        this.opacity = 1
     
         // Draw function
         this.draw = function() {
@@ -77,11 +69,6 @@ function Particle() {
 
             // Alter vy based on gravity
             this.vy += particleSettings.gravity
-
-            // Decrement opacity
-            if (this.opacity > .02) {
-                this.opacity -= .02
-            }
             
             ctx.fillStyle = this.color
             ctx.fillRect(this.x, this.y, this.size, this.size)
@@ -93,6 +80,7 @@ function Particle() {
     }
 }
 
+// Basic loop to animate particle movement/generation
 function loop() {
     
     //Clear board
@@ -102,14 +90,9 @@ function loop() {
     new Particle()
     
     // Draw particles
-    for (var i in particles) {
+    for (let i in particles) {
         particles[i].draw();
     }
 }
-
-//game.addEventListener('click', (e) => {
-//    particleSettings.startingX = e.offsetX
-//    particleSettings.startingY = e.offsetY
-//})
 
 gameInterval = setInterval(loop, 30)
