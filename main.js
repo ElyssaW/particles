@@ -48,9 +48,15 @@ function Particle() {
         this.vx = randomRange(-5, 5)
         this.vy = randomRange(-5, -10)
         
-        // Increment particle index and push particle to object-array
+        // Increment particle index
         particleIndex++
-        // Set particle index to current index
+    
+        // Set particle index to current index - you might notice this index is set like particles is an array
+        // but it's actually an object. Fun fact! You can set values in an object by using a numeric index as
+        // the key, similar to an array. But why do that, when you can just use an ACTUAL array? In this case, it's helpful
+        // because we can delete the particle out of the object by referencing its index, without shifting the index
+        // positions of all the other particles in the object. This will be helpful when we're deleting particles
+        // that have reached the end of their lifespan and should not be drawn anymore.
         particles[particleIndex] = this
         this.id = particleIndex
         // Set life to 0
@@ -79,8 +85,8 @@ function Particle() {
 
             // This is the meat of the particle movement: increment the Y velocity according to gravity
             this.vy += particleSettings.gravity
-            
-            // This increases the particle's Y velocity based on the gravity value defined in settings
+    
+            // To clarify: This increases the particle's Y velocity based on the gravity value defined in settings
             // If the particle is moving upwards, it's vy value will be negative, and gravity will
             // slowly push it into the postive here. If it is already in the positive, gravity will increase it
             // even further, making it look like it's gaining more and more speed. 
