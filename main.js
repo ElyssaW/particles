@@ -1,8 +1,4 @@
-//================================================
-//
-//          Particle functions
-//
-//================================================
+// This stuff is just housekeeping, defining canvas, etc.
 
 // Initial variables
 let gameInterval
@@ -10,15 +6,16 @@ let ctx = game.getContext('2d')
 game.setAttribute('width', 600)
 game.setAttribute('height', 600)
 
-//game.addEventListener('click', (e) => {
-//    particleSettings.startingX = e.offsetX
-//    particleSettings.startingY = e.offsetY
-//})
-
 // Select random number from given range
 function randomRange(min, max) {
   return Math.floor(Math.random() * (max - min) + min)
 }
+
+//==================================================
+//
+//          THE MAGIC
+//
+//==================================================
 
 // Create object array to hold the particles, because I'm a child entertained by pretty lights
 let particles = {}
@@ -85,15 +82,6 @@ function Particle() {
             if (this.opacity > .02) {
                 this.opacity -= .02
             }
-
-//            // Draw particle
-//            ctx.globalAlpha = this.opacity
-//            ctx.font = '20px serif'
-//            ctx.fillStyle = this.undercolor
-//            ctx.fillText(this.letter, this.x, this.y+3)
-//            ctx.fillStyle = this.color
-//            ctx.fillText(this.letter, this.x, this.y)
-//            ctx.globalAlpha = 1
             
             ctx.fillStyle = this.color
             ctx.fillRect(this.x, this.y, this.size, this.size)
@@ -118,5 +106,10 @@ function loop() {
         particles[i].draw();
     }
 }
+
+//game.addEventListener('click', (e) => {
+//    particleSettings.startingX = e.offsetX
+//    particleSettings.startingY = e.offsetY
+//})
 
 gameInterval = setInterval(loop, 30)
